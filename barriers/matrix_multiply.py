@@ -5,7 +5,12 @@ from threading import Barrier, Thread
 matrix_size = 200
 
 # matrix_a = [
-#     [3,1,-4],
+#     [3,1,-4],matrix_a = [[0] * matrix_size for r in range(matrix_size)]
+# matrix_b = [[0] * matrix_size for r in range(matrix_size)]
+# result = [[0] * matrix_size for r in range(matrix_size)]
+#
+# work_start = Barrier(matrix_size + 1)
+# work_complete = Barrier(matrix_size + 1)
 #     [2,-3,1],
 #     [5,-2,0]
 # ]
@@ -16,11 +21,11 @@ matrix_size = 200
 #     [-1,-2,3]
 # ]
 
-random = Random()
 
 matrix_a = [[0] * matrix_size for r in range(matrix_size)]
 matrix_b = [[0] * matrix_size for r in range(matrix_size)]
 result = [[0] * matrix_size for r in range(matrix_size)]
+random = Random()
 
 work_start = Barrier(matrix_size + 1)
 work_complete = Barrier(matrix_size + 1)
@@ -52,6 +57,7 @@ for t in range(10):
     generate_random_matrix(matrix_b)
     result = [[0] * matrix_size for r in range(matrix_size)]
     work_start.wait()
+    work_complete.wait()
 
     # for row in range(matrix_size):
     #     print(matrix_a[row],matrix_b[row],result[row])
